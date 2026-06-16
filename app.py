@@ -40,7 +40,7 @@ st.write("""
 3. Siti Annisa Dewanty (10090224033)
 """)
 
-st.write(""" 
+st.write("""
 Mata Kuliah
 Ekonomi Sumber Daya Alam dan Lingkungan
 
