@@ -147,7 +147,7 @@ elif menu == "Grafik":
         "Skor": [40, 25, 20, 15]
     })
 
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(5, 3))
 
     ax.bar(
         grafik["Kategori"],
@@ -157,7 +157,10 @@ elif menu == "Grafik":
     ax.set_ylabel("Persentase (%)")
     ax.set_title("Ancaman terhadap Sumber Daya Hutan")
 
-    st.pyplot(fig)
+    col1, col2, col3 = st.columns([1, 3, 1])
+
+    with col2:
+        st.pyplot(fig)
 
 # ================= STUDI KASUS =================
 elif menu == "Studi Kasus":
