@@ -4,7 +4,7 @@ import streamlit as st
 # ================= KONFIGURASI HALAMAN =================
 st.set_page_config(
     page_title="Forest Value Explorer",
-    page_icon="assets/logo_unisba.png",
+    page_icon="logo_unisba.png",
     layout="wide"
 )
 
@@ -12,7 +12,7 @@ st.set_page_config(
 col1, col2 = st.columns([1, 5])
 
 with col1:
-    logo_path = "assets/logo_unisba.png"
+    logo_path = "logo_unisba.png"
 
     if os.path.exists(logo_path):
         st.image(logo_path, width=130)
@@ -42,8 +42,15 @@ st.write("""
 3. Siti Annisa Dewanty (10090224033)
 """)
 
-st.write("""
-Program Studi Ekonomi Pembangunan
+st.markdown("""
+**Mata Kuliah**  
+Ekonomi Sumber Daya Alam dan Lingkungan
+
+**Dosen Pengampu**  
+Yuhka Sundaya S.E., M.Si
+
+**Program Studi**  
+Ekonomi Pembangunan
 
 Universitas Islam Bandung
 """)
