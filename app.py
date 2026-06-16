@@ -1,35 +1,12 @@
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
 import os
+import streamlit as st
 
 # ================= KONFIGURASI HALAMAN =================
 st.set_page_config(
     page_title="Forest Value Explorer",
+    page_icon="assets/logo_unisba.png",
     layout="wide"
 )
-
-# ================= CSS =================
-st.markdown("""
-<style>
-.main {
-    background-color: #f7f7f7;
-}
-
-.block-container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-
-h1, h2, h3 {
-    color: #0b3d2e;
-}
-
-section[data-testid="stSidebar"] {
-    background-color: #0b3d2e;
-}
-</style>
-""", unsafe_allow_html=True)
 
 # ================= COVER =================
 col1, col2 = st.columns([1, 5])
@@ -38,12 +15,15 @@ with col1:
     logo_path = "assets/logo_unisba.png"
 
     if os.path.exists(logo_path):
-        st.image(logo_path, width=120)
+        st.image(logo_path, width=130)
 
 with col2:
     st.markdown("""
-    <h1>FOREST VALUE EXPLORER</h1>
-    <h4 style='color:#2f5d50;'>
+    <h1 style='color:#0b3d2e; margin-bottom:0;'>
+    FOREST VALUE EXPLORER
+    </h1>
+
+    <h4 style='color:#2f5d50; margin-top:10px;'>
     Aplikasi Interaktif untuk Memahami Ekonomi dan Keberlanjutan
     Sumber Daya Hutan Indonesia
     </h4>
