@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 # ==================================================
 st.set_page_config(
     page_title="Eco-Forest Valuation",
-    page_icon="🌳",
     layout="wide"
 )
 
@@ -27,22 +26,21 @@ with col1:
 with col2:
 
     st.markdown("""
-    <h1 style='color:#14532d;'>
+    <h1 style='color:#14532d; margin-bottom:0;'>
     ECO-FOREST VALUATION
     </h1>
 
     <h4 style='color:#166534;'>
-    Aplikasi Interaktif Ekonomi Sumber Daya Hutan
-    untuk Memahami Nilai Ekonomi dan Keberlanjutan Hutan
+    Aplikasi Interaktif Valuasi Ekonomi Sumber Daya Hutan
     </h4>
     """, unsafe_allow_html=True)
 
 st.markdown("---")
 
-st.write("### Disusun Oleh")
+st.subheader("Disusun Oleh")
 
 st.write("""
-**Kelompok 8**
+Kelompok 8
 
 1. Nadylah Agustinawati (10090224003)
 
@@ -52,13 +50,13 @@ st.write("""
 """)
 
 st.write("""
-**Mata Kuliah:** Ekonomi Sumber Daya Alam dan Lingkungan
+Mata Kuliah : Ekonomi Sumber Daya Alam dan Lingkungan
 
-**Dosen Pengampu:** Yuhka Sundaya, S.E., M.Si
+Dosen Pengampu : Yuhka Sundaya, S.E., M.Si
 
-**Program Studi:** Ekonomi Pembangunan
+Program Studi : Ekonomi Pembangunan
 
-**Universitas Islam Bandung**
+Universitas Islam Bandung
 """)
 
 st.markdown("---")
@@ -67,7 +65,7 @@ st.markdown("---")
 # SIDEBAR
 # ==================================================
 menu = st.sidebar.selectbox(
-    "Pilih Modul",
+    "Pilih Menu",
     [
         "Beranda",
         "Kalkulator TEV",
@@ -84,30 +82,31 @@ menu = st.sidebar.selectbox(
 # ==================================================
 if menu == "Beranda":
 
-    st.header("🌳 Selamat Datang")
+    st.header("Beranda")
 
     st.write("""
     Eco-Forest Valuation merupakan aplikasi pembelajaran
-    interaktif yang membantu pengguna memahami konsep
-    ekonomi sumber daya hutan melalui pendekatan valuasi ekonomi.
+    interaktif yang dirancang untuk membantu pengguna
+    memahami konsep ekonomi sumber daya hutan melalui
+    pendekatan valuasi ekonomi.
 
-    Aplikasi ini terdiri atas empat modul utama:
+    Aplikasi ini menampilkan simulasi dan visualisasi
+    yang menggambarkan manfaat ekonomi, sosial,
+    dan lingkungan dari sumber daya hutan.
     """)
 
-    col1, col2 = st.columns(2)
+    st.subheader("Modul Aplikasi")
 
-    with col1:
-        st.success("📊 Kalkulator Total Economic Value (TEV)")
-        st.success("⚖️ Simulasi Trade-off Lahan")
+    st.write("""
+    1. Kalkulator Total Economic Value (TEV)
 
-    with col2:
-        st.success("💰 Kebijakan PES")
-        st.success("📚 Kasus Interaktif")
+    2. Simulasi Trade-off Lahan
 
-    st.info("""
-    Tujuan aplikasi adalah membantu mahasiswa memahami
-    bagaimana hutan memberikan manfaat ekonomi,
-    sosial, dan lingkungan secara berkelanjutan.
+    3. Payment for Ecosystem Services (PES)
+
+    4. Kasus Interaktif
+
+    5. Visualisasi Komponen TEV
     """)
 
 # ==================================================
@@ -115,11 +114,12 @@ if menu == "Beranda":
 # ==================================================
 elif menu == "Kalkulator TEV":
 
-    st.header("📊 Kalkulator Total Economic Value (TEV)")
+    st.header("Kalkulator Total Economic Value (TEV)")
 
     st.write("""
-    Total Economic Value (TEV) merupakan pendekatan yang digunakan
-    untuk menghitung seluruh manfaat ekonomi yang diberikan oleh hutan.
+    Total Economic Value (TEV) digunakan untuk
+    mengukur seluruh manfaat ekonomi yang dihasilkan
+    oleh suatu kawasan hutan.
     """)
 
     luas = st.number_input(
@@ -141,7 +141,7 @@ elif menu == "Kalkulator TEV":
     )
 
     nilai_opsi = st.number_input(
-        "Nilai Pilihan Masa Depan (Rp/Ha)",
+        "Nilai Pilihan (Rp/Ha)",
         min_value=0,
         value=300000
     )
@@ -168,23 +168,23 @@ elif menu == "Kalkulator TEV":
 # ==================================================
 elif menu == "Trade-off Lahan":
 
-    st.header("⚖️ Simulasi Trade-off Lahan")
+    st.header("Simulasi Trade-off Lahan")
 
     st.write("""
-    Modul ini membandingkan manfaat ekonomi antara
-    mempertahankan kawasan hutan dan mengkonversinya
-    menjadi penggunaan lain.
+    Simulasi ini membandingkan nilai ekonomi antara
+    mempertahankan hutan dan mengkonversinya menjadi
+    penggunaan lahan alternatif.
     """)
 
     nilai_hutan = st.slider(
-        "Nilai Hutan Lestari (Miliar Rp)",
+        "Nilai Hutan Lestari (Miliar Rupiah)",
         0,
         200,
         120
     )
 
     nilai_pertanian = st.slider(
-        "Nilai Konversi Pertanian (Miliar Rp)",
+        "Nilai Konversi Pertanian (Miliar Rupiah)",
         0,
         200,
         80
@@ -208,19 +208,19 @@ elif menu == "Trade-off Lahan":
     if nilai_hutan > nilai_pertanian:
 
         st.success(
-            "Rekomendasi: Mempertahankan hutan lebih menguntungkan."
+            "Mempertahankan hutan memberikan manfaat yang lebih tinggi."
         )
 
     elif nilai_hutan < nilai_pertanian:
 
         st.warning(
-            "Konversi lahan terlihat lebih menguntungkan secara ekonomi jangka pendek."
+            "Konversi lahan lebih menguntungkan secara ekonomi jangka pendek."
         )
 
     else:
 
         st.info(
-            "Kedua alternatif memiliki nilai yang sama."
+            "Kedua pilihan memiliki nilai yang sama."
         )
 
 # ==================================================
@@ -228,44 +228,40 @@ elif menu == "Trade-off Lahan":
 # ==================================================
 elif menu == "Kebijakan PES":
 
-    st.header("💰 Payment for Ecosystem Services (PES)")
+    st.header("Payment for Ecosystem Services (PES)")
 
     st.write("""
-    PES merupakan mekanisme pemberian insentif kepada masyarakat
-    atas jasa lingkungan yang dihasilkan dari pelestarian hutan.
+    Payment for Ecosystem Services merupakan mekanisme
+    pemberian insentif kepada masyarakat atas jasa
+    lingkungan yang dihasilkan dari pelestarian hutan.
     """)
 
     karbon = st.slider(
-        "Serapan Karbon (Ton CO₂)",
+        "Serapan Karbon (Ton CO2)",
         0,
         1000,
         300
     )
 
-    harga = st.number_input(
-        "Harga Karbon (Rp/Ton)",
+    harga_karbon = st.number_input(
+        "Harga Karbon per Ton (Rp)",
         min_value=0,
         value=150000
     )
 
-    insentif = karbon * harga
+    insentif = karbon * harga_karbon
 
     st.metric(
-        "Estimasi Insentif PES",
+        "Estimasi Nilai Insentif",
         f"Rp {insentif:,.0f}"
     )
-
-    st.write("""
-    Semakin besar jasa lingkungan yang dihasilkan,
-    semakin besar pula insentif yang dapat diterima.
-    """)
 
 # ==================================================
 # KASUS INTERAKTIF
 # ==================================================
 elif menu == "Kasus Interaktif":
 
-    st.header("📚 Kasus Interaktif")
+    st.header("Kasus Interaktif")
 
     kasus = st.selectbox(
         "Pilih Kasus",
@@ -278,33 +274,37 @@ elif menu == "Kasus Interaktif":
 
     if kasus == "Penyerbukan Lebah":
 
-        st.subheader("🐝 Penyerbukan Lebah")
+        st.subheader("Penyerbukan Lebah")
 
         st.write("""
-        Lebah hutan membantu proses penyerbukan tanaman
-        pertanian sehingga meningkatkan produktivitas hasil panen.
-        Jika habitat hutan rusak maka populasi lebah menurun
-        dan hasil pertanian dapat berkurang.
+        Lebah hutan berperan penting dalam proses
+        penyerbukan tanaman pertanian.
+
+        Berkurangnya luas hutan dapat menyebabkan
+        penurunan populasi lebah sehingga berdampak
+        pada produktivitas pertanian.
         """)
 
     elif kasus == "Karbon Hutan":
 
-        st.subheader("🌍 Karbon Hutan")
+        st.subheader("Karbon Hutan")
 
         st.write("""
-        Hutan berperan sebagai penyerap karbon alami
+        Hutan berfungsi sebagai penyerap karbon alami
         yang membantu mengurangi dampak perubahan iklim.
-        Nilai ekonomi karbon dapat digunakan sebagai dasar
-        kebijakan perdagangan karbon.
+
+        Nilai ekonomi karbon dapat digunakan sebagai
+        dasar kebijakan perdagangan karbon.
         """)
 
     else:
 
-        st.subheader("🏕️ Ekowisata")
+        st.subheader("Ekowisata")
 
         st.write("""
-        Ekowisata memberikan manfaat ekonomi kepada masyarakat
-        sekitar sekaligus mendorong pelestarian kawasan hutan.
+        Ekowisata memberikan manfaat ekonomi kepada
+        masyarakat sekitar sekaligus mendukung
+        konservasi kawasan hutan.
         """)
 
 # ==================================================
@@ -312,14 +312,14 @@ elif menu == "Kasus Interaktif":
 # ==================================================
 elif menu == "Visualisasi TEV":
 
-    st.header("📈 Visualisasi Komponen TEV")
+    st.header("Visualisasi Komponen TEV")
 
     data = pd.DataFrame({
         "Komponen": [
             "Nilai Guna Langsung",
             "Jasa Lingkungan",
-            "Option Value",
-            "Existence Value"
+            "Nilai Pilihan",
+            "Nilai Eksistensi"
         ],
         "Persentase": [
             25,
@@ -337,7 +337,9 @@ elif menu == "Visualisasi TEV":
         autopct="%1.0f%%"
     )
 
-    ax.set_title("Komposisi Total Economic Value")
+    ax.set_title(
+        "Komposisi Total Economic Value"
+    )
 
     st.pyplot(fig)
 
@@ -346,27 +348,28 @@ elif menu == "Visualisasi TEV":
 # ==================================================
 elif menu == "Tentang Aplikasi":
 
-    st.header("ℹ️ Tentang Aplikasi")
+    st.header("Tentang Aplikasi")
 
     st.write("""
     Eco-Forest Valuation merupakan media pembelajaran
     yang dirancang untuk membantu mahasiswa memahami
-    konsep ekonomi sumber daya hutan melalui simulasi
-    interaktif dan pendekatan valuasi ekonomi.
+    konsep valuasi ekonomi sumber daya hutan.
 
-    Konsep utama yang digunakan meliputi:
+    Aplikasi ini mengintegrasikan konsep:
 
-    • Total Economic Value (TEV)
+    - Total Economic Value (TEV)
 
-    • Trade-off penggunaan lahan
+    - Trade-off penggunaan lahan
 
-    • Payment for Ecosystem Services (PES)
+    - Payment for Ecosystem Services (PES)
 
-    • Valuasi jasa lingkungan hutan
+    - Valuasi jasa lingkungan
+
+    melalui simulasi dan visualisasi yang mudah dipahami.
     """)
 
 st.markdown("---")
 
 st.caption(
-    "Sumber: Arsitektur Aplikasi Eco-Forest Valuation dan konsep Ekonomi Sumber Daya Hutan."
+    "Sumber: Konsep Ekonomi Sumber Daya Hutan dan Arsitektur Aplikasi Eco-Forest Valuation."
 )
