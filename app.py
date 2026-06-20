@@ -302,15 +302,20 @@ elif menu == "Trade-off Lahan":
 
     st.header("Simulasi Trade-off Penggunaan Lahan")
 
-    st.info("""
-Simulasi ini membandingkan dua alternatif penggunaan lahan:
+    st.write("""
+    Analisis trade-off digunakan untuk membandingkan manfaat ekonomi
+    dari berbagai pilihan penggunaan lahan.
 
-• Hutan Lestari
+    Dalam konteks Taman Nasional Gunung Ciremai, keputusan untuk
+    mempertahankan hutan atau mengkonversinya menjadi lahan pertanian
+    akan menghasilkan dampak ekonomi dan lingkungan yang berbeda.
 
-• Konversi Pertanian
-
-Keuntungan ekonomi jangka pendek belum tentu lebih besar dibandingkan manfaat ekologis dan ekonomi jangka panjang yang dihasilkan oleh hutan.
-""")
+    Hutan memberikan manfaat jangka panjang melalui penyediaan air,
+    penyimpanan karbon, perlindungan keanekaragaman hayati, dan
+    pengembangan ekowisata. Sementara itu, konversi lahan pertanian
+    dapat memberikan keuntungan ekonomi yang lebih cepat tetapi
+    berpotensi mengurangi jasa lingkungan yang dihasilkan kawasan hutan.
+    """)
 
     nilai_hutan = st.slider(
         "Nilai Hutan Lestari (Miliar Rupiah)",
@@ -341,23 +346,122 @@ Keuntungan ekonomi jangka pendek belum tentu lebih besar dibandingkan manfaat ek
         data.set_index("Alternatif")
     )
 
-    if nilai_hutan > nilai_pertanian:
+    selisih = nilai_hutan - nilai_pertanian
 
-        st.success(
-            "Mempertahankan hutan memberikan manfaat ekonomi dan lingkungan yang lebih tinggi dalam jangka panjang."
-        )
+    st.subheader("Analisis Dampak")
 
-    elif nilai_hutan < nilai_pertanian:
+    if selisih >= 50:
 
-        st.warning(
-            "Konversi lahan memberikan keuntungan ekonomi jangka pendek yang lebih besar namun berpotensi mengurangi jasa lingkungan."
-        )
+        st.success("""
+        Prioritas konservasi hutan memberikan manfaat ekonomi dan ekologis
+        yang lebih tinggi dalam jangka panjang.
+        """)
+
+        st.write("""
+        Potensi yang diperoleh:
+
+        • Ketersediaan air tetap terjaga melalui 97 mata air aktif.
+
+        • Penyimpanan karbon tetap tinggi sehingga membantu mitigasi
+        perubahan iklim.
+
+        • Habitat satwa penting seperti Macan Tutul Jawa dan Elang Jawa
+        tetap terlindungi.
+
+        • Potensi ekowisata dan penelitian meningkat.
+
+        • Risiko erosi, longsor, dan degradasi lahan lebih rendah.
+
+        Dalam kondisi ini, Total Economic Value (TEV) kawasan cenderung
+        meningkat karena manfaat jasa lingkungan tetap terjaga.
+        """)
+
+    elif selisih <= -50:
+
+        st.warning("""
+        Konversi lahan menjadi pertanian memberikan keuntungan ekonomi
+        jangka pendek yang lebih besar.
+        """)
+
+        st.write("""
+        Namun terdapat beberapa konsekuensi lingkungan:
+
+        • Berkurangnya tutupan hutan.
+
+        • Menurunnya kapasitas penyimpanan karbon.
+
+        • Berkurangnya habitat flora dan fauna.
+
+        • Potensi penurunan debit mata air.
+
+        • Menurunnya nilai konservasi dan nilai keberadaan
+        (Existence Value).
+
+        Keuntungan ekonomi meningkat dalam jangka pendek, tetapi
+        sebagian jasa lingkungan berpotensi hilang sehingga nilai
+        ekonomi jangka panjang dapat menurun.
+        """)
 
     else:
 
-        st.info(
-            "Kedua alternatif memiliki nilai ekonomi yang sama."
+        st.info("""
+        Nilai ekonomi hutan dan pertanian relatif seimbang.
+        """)
+
+        st.write("""
+        Dalam kondisi ini, pengambilan keputusan perlu
+        mempertimbangkan aspek ekonomi, sosial, dan lingkungan
+        secara bersamaan.
+
+        Pendekatan pembangunan berkelanjutan dapat dilakukan melalui:
+
+        • Pemanfaatan lahan secara terbatas.
+
+        • Pengembangan agroforestri.
+
+        • Ekowisata berbasis masyarakat.
+
+        • Konservasi sumber daya air.
+
+        • Perlindungan biodiversitas.
+
+        Pendekatan ini memungkinkan manfaat ekonomi tetap diperoleh
+        tanpa mengurangi fungsi ekologis kawasan secara signifikan.
+        """)
+
+    st.subheader("Estimasi Dampak Lingkungan")
+
+    tekanan_lahan = nilai_pertanian / 200
+
+    indeks_air = max(40, int(100 - (tekanan_lahan * 40)))
+    indeks_karbon = max(35, int(100 - (tekanan_lahan * 50)))
+    indeks_biodiv = max(45, int(100 - (tekanan_lahan * 35)))
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric(
+            "Kondisi Jasa Air",
+            f"{indeks_air}%"
         )
+
+    with col2:
+        st.metric(
+            "Penyimpanan Karbon",
+            f"{indeks_karbon}%"
+        )
+
+    with col3:
+        st.metric(
+            "Keanekaragaman Hayati",
+            f"{indeks_biodiv}%"
+        )
+
+    st.caption("""
+    Simulasi ini merupakan ilustrasi pembelajaran untuk menunjukkan
+    hubungan antara perubahan penggunaan lahan dan perubahan jasa
+    ekosistem dalam konsep ekonomi sumber daya alam.
+    """)
 
 # ==================================================
 # KEBIJAKAN PES
