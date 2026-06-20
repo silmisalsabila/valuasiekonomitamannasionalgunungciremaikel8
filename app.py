@@ -409,14 +409,13 @@ elif menu == "Visualisasi TEV":
         autopct="%1.0f%%"
     )
 
-    ax.set_title(
-        "Komposisi Total Economic Value"
-    )
+    ax.set_title("Komposisi Total Economic Value")
 
     st.pyplot(fig)
-st.write("""
-Jasa lingkungan menjadi komponen terbesar dalam Total Economic Value karena mencakup manfaat penyimpanan karbon, penyediaan air, perlindungan keanekaragaman hayati, serta berbagai fungsi ekologis lainnya yang mendukung keberlanjutan lingkungan.
-""")
+
+    st.write("""
+    Jasa lingkungan menjadi komponen terbesar dalam Total Economic Value karena mencakup manfaat penyimpanan karbon, penyediaan air, perlindungan keanekaragaman hayati, serta berbagai fungsi ekologis lainnya yang mendukung keberlanjutan lingkungan.
+    """)
 
 # ==================================================
 # TENTANG APLIKASI
