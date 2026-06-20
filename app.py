@@ -22,8 +22,10 @@ st.subheader("Pembelajaran Ekonomi Sumber Daya Hutan")
 # SIDEBAR MENU
 # ==================================================
 
-menu = st.sidebar.selectbox(
-    "Pilih Menu",
+st.sidebar.subheader("Pilih Menu")
+
+menu = st.sidebar.radio(
+    "",
     [
         "Beranda",
         "Profil TNGC",
@@ -72,16 +74,41 @@ elif menu == "Profil TNGC":
 
     st.header("Profil Taman Nasional Gunung Ciremai")
 
+    st.subheader("Indikator Kawasan")
+
     col1, col2, col3 = st.columns(3)
 
-    col1.metric("Luas Kawasan", "14.841,30 ha")
-    col2.metric("Ketinggian Puncak", "3.078 mdpl")
-    col3.metric("Jenis Tumbuhan", "119")
+    with col1:
+        st.metric(
+            "Luas Kawasan",
+            "14.841,30 ha"
+        )
 
-    col1, col2 = st.columns(2)
+    with col2:
+        st.metric(
+            "Ketinggian Puncak",
+            "3.078 mdpl"
+        )
 
-    col1.metric("Spesies Fauna", ">300")
-    col2.metric("Spesies Anggrek", "117")
+    with col3:
+        st.metric(
+            "Jenis Tumbuhan",
+            "119"
+        )
+
+    col4, col5 = st.columns(2)
+
+    with col4:
+        st.metric(
+            "Spesies Fauna",
+            ">300"
+        )
+
+    with col5:
+        st.metric(
+            "Spesies Anggrek",
+            "117"
+        ))
 
     st.subheader("Keanekaragaman Hayati")
 
@@ -98,6 +125,9 @@ elif menu == "Profil TNGC":
         ]
     })
 
+    st.bar_chart(
+        biodiv.set_index("Kategori")
+    )
     st.bar_chart(
         biodiv.set_index("Kategori")
     )
