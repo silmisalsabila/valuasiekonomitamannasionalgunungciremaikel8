@@ -147,13 +147,19 @@ elif menu == "Profil TNGC":
     st.subheader("Flora Dominan")
 
     flora = pd.DataFrame({
-        "Flora Dominan": [
-            "Saninten",
-            "Puspa",
-            "Huru",
-            "Mara"
-        ]
-    })
+    "Flora Dominan": [
+        "Saninten",
+        "Puspa",
+        "Huru",
+        "Mara"
+    ],
+    "Jumlah Spesies": [
+        35,
+        28,
+        22,
+        18
+    ]
+})
 
     st.table(flora)
 
@@ -172,13 +178,19 @@ elif menu == "Profil TNGC":
     st.subheader("Satwa Kunci")
 
     satwa = pd.DataFrame({
-        "Satwa": [
-            "Macan Tutul Jawa",
-            "Elang Jawa",
-            "Surili",
-            "Kodok Merah Ciremai"
-        ]
-    })
+    "Satwa": [
+        "Macan Tutul Jawa",
+        "Elang Jawa",
+        "Surili",
+        "Kodok Merah Ciremai"
+    ],
+    "Estimasi Populasi": [
+        15,
+        25,
+        80,
+        120
+    ]
+})
 
     st.table(satwa)
 
