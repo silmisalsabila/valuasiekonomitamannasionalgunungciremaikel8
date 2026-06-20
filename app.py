@@ -1,3 +1,40 @@
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# ==================================================
+# KONFIGURASI HALAMAN
+# ==================================================
+
+st.set_page_config(
+    page_title="Eco-Forest Valuation",
+    layout="wide"
+)
+
+# ==================================================
+# JUDUL APLIKASI
+# ==================================================
+
+st.title("Eco-Forest Valuation")
+st.subheader("Pembelajaran Ekonomi Sumber Daya Hutan")
+
+# ==================================================
+# SIDEBAR MENU
+# ==================================================
+
+menu = st.sidebar.selectbox(
+    "Pilih Menu",
+    [
+        "Beranda",
+        "Kalkulator TEV",
+        "Trade-off Lahan",
+        "Kebijakan PES",
+        "Kasus Interaktif",
+        "Visualisasi TEV",
+        "Tentang Aplikasi"
+    ]
+)
+
 # ==================================================
 # BERANDA
 # ==================================================
