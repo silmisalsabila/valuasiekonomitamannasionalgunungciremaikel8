@@ -513,6 +513,13 @@ elif menu == "Kasus Interaktif":
 
     st.header("Kasus Interaktif")
 
+    st.write("""
+    Menu ini menyajikan beberapa studi kasus yang berkaitan dengan
+    pengelolaan Taman Nasional Gunung Ciremai (TNGC). Setiap kasus
+    menunjukkan bagaimana suatu keputusan dapat memengaruhi nilai
+    ekonomi maupun fungsi ekologis kawasan.
+    """)
+
     kasus = st.selectbox(
         "Pilih Kasus",
         [
@@ -522,32 +529,211 @@ elif menu == "Kasus Interaktif":
         ]
     )
 
+    # ==================================================
+    # KASUS TNGC
+    # ==================================================
+
     if kasus == "Taman Nasional Gunung Ciremai":
 
-        st.subheader("Taman Nasional Gunung Ciremai")
+        st.subheader("Kasus 1 : Taman Nasional Gunung Ciremai")
 
         st.write("""
-Taman Nasional Gunung Ciremai merupakan kawasan konservasi yang memiliki berbagai manfaat ekonomi dan ekologis.
+        TNGC merupakan kawasan konservasi seluas 14.841,30 hektar yang
+        berfungsi sebagai penyedia jasa lingkungan penting bagi wilayah
+        Ciayumajakuning (Cirebon, Indramayu, Majalengka, dan Kuningan).
 
-Selain berfungsi sebagai habitat berbagai jenis flora dan fauna, kawasan ini juga menjadi daerah tangkapan air yang penting bagi masyarakat Kabupaten Kuningan, Majalengka, dan Cirebon.
+        Kawasan ini mendukung ketersediaan air, penyimpanan karbon,
+        konservasi keanekaragaman hayati, serta kegiatan wisata alam.
+        """)
 
-Dari perspektif ekonomi lingkungan, manfaat kawasan ini tidak hanya berasal dari wisata alam, tetapi juga dari penyimpanan karbon, perlindungan biodiversitas, serta fungsi hidrologis. Oleh karena itu, valuasi ekonomi diperlukan agar seluruh manfaat tersebut dapat dipertimbangkan dalam proses pengambilan kebijakan.
-""")
+        indikator = pd.DataFrame({
+            "Indikator": [
+                "Luas Kawasan",
+                "Mata Air Aktif",
+                "Debit Air",
+                "DAS yang Ditopang",
+                "Jenis Tumbuhan",
+                "Spesies Fauna"
+            ],
+            "Nilai": [
+                "14.841,30 ha",
+                "97",
+                "9.057,61 L/detik",
+                "9 DAS",
+                "119",
+                ">300"
+            ]
+        })
+
+        st.table(indikator)
+
+        st.info("""
+        Pertanyaan Analisis:
+
+        Jika sebagian kawasan hutan mengalami degradasi, bagaimana dampaknya
+        terhadap ketersediaan air, habitat satwa, dan nilai ekonomi kawasan?
+        """)
+
+    # ==================================================
+    # KASUS KARBON
+    # ==================================================
 
     elif kasus == "Karbon Hutan":
 
-        st.subheader("Karbon Hutan")
+        st.subheader("Kasus 2 : Penyimpanan Karbon Hutan")
 
         st.write("""
-        Hutan berperan sebagai penyerap karbon alami yang membantu mengurangi konsentrasi gas rumah kaca di atmosfer.
+        Salah satu jasa ekosistem terpenting dari TNGC adalah kemampuannya
+        menyerap dan menyimpan karbon. Fungsi ini membantu mengurangi
+        emisi gas rumah kaca penyebab perubahan iklim.
         """)
+
+        karbon = st.slider(
+            "Estimasi Karbon Tersimpan (Ton CO₂)",
+            10000,
+            100000,
+            50000,
+            step=5000
+        )
+
+        harga = st.number_input(
+            "Harga Karbon (Rp/Ton)",
+            value=150000
+        )
+
+        nilai_karbon = karbon * harga
+
+        st.metric(
+            "Nilai Ekonomi Karbon",
+            f"Rp {nilai_karbon:,.0f}"
+        )
+
+        st.write("""
+        Semakin besar karbon yang tersimpan dalam kawasan hutan,
+        semakin besar pula nilai ekonomi jasa lingkungan yang dihasilkan.
+        """)
+
+        if karbon >= 70000:
+
+            st.success("""
+            Kondisi hutan sangat baik.
+
+            Potensi manfaat:
+
+            • Penyimpanan karbon tinggi
+
+            • Kontribusi mitigasi perubahan iklim besar
+
+            • Peluang skema perdagangan karbon meningkat
+
+            • Nilai PES (Payment for Ecosystem Services) lebih tinggi
+            """)
+
+        elif karbon >= 40000:
+
+            st.info("""
+            Kondisi hutan relatif stabil.
+
+            Kawasan masih mampu menjalankan fungsi penyimpanan karbon,
+            namun perlu pengelolaan yang konsisten untuk mencegah
+            degradasi kawasan.
+            """)
+
+        else:
+
+            st.warning("""
+            Kapasitas penyimpanan karbon rendah.
+
+            Dampak potensial:
+
+            • Penurunan kualitas tutupan hutan
+
+            • Emisi karbon meningkat
+
+            • Nilai ekonomi jasa lingkungan menurun
+
+            • Risiko perubahan iklim lokal meningkat
+            """)
+
+    # ==================================================
+    # KASUS EKOWISATA
+    # ==================================================
 
     else:
 
-        st.subheader("Ekowisata")
+        st.subheader("Kasus 3 : Pengembangan Ekowisata")
 
         st.write("""
-        Ekowisata merupakan bentuk pemanfaatan sumber daya hutan yang mengedepankan prinsip konservasi dan keberlanjutan.
+        Ekowisata merupakan salah satu bentuk pemanfaatan hutan yang
+        tetap mempertahankan fungsi konservasi sekaligus memberikan
+        manfaat ekonomi bagi masyarakat sekitar kawasan.
+        """)
+
+        wisatawan = st.slider(
+            "Jumlah Wisatawan per Tahun",
+            1000,
+            100000,
+            30000,
+            step=1000
+        )
+
+        pengeluaran = st.number_input(
+            "Rata-rata Pengeluaran per Wisatawan (Rp)",
+            value=50000
+        )
+
+        nilai_ekowisata = wisatawan * pengeluaran
+
+        st.metric(
+            "Estimasi Perputaran Ekonomi",
+            f"Rp {nilai_ekowisata:,.0f}"
+        )
+
+        if wisatawan > 70000:
+
+            st.warning("""
+            Aktivitas wisata sangat tinggi.
+
+            Potensi manfaat:
+            • Pendapatan masyarakat meningkat
+            • Lapangan kerja bertambah
+
+            Namun perlu diwaspadai:
+            • Sampah wisata
+            • Kerusakan jalur pendakian
+            • Gangguan habitat satwa liar
+            """)
+
+        elif wisatawan > 30000:
+
+            st.success("""
+            Tingkat kunjungan berada pada kategori ideal.
+
+            Manfaat ekonomi dan konservasi dapat berjalan secara
+            berimbang apabila didukung pengelolaan yang baik.
+            """)
+
+        else:
+
+            st.info("""
+            Kunjungan wisata relatif rendah.
+
+            Dampak:
+            • Tekanan lingkungan kecil
+            • Pendapatan wisata belum optimal
+
+            Diperlukan promosi dan pengembangan fasilitas yang tetap
+            memperhatikan prinsip keberlanjutan.
+            """)
+
+        st.subheader("Hubungan Ekowisata dan Konservasi")
+
+        st.write("""
+        Dalam konsep Total Economic Value (TEV), ekowisata termasuk
+        manfaat guna langsung (direct use value). Namun manfaat ekonomi
+        tersebut hanya dapat dipertahankan apabila kualitas ekosistem
+        tetap terjaga. Oleh karena itu, konservasi dan pemanfaatan
+        ekonomi harus berjalan secara seimbang.
         """)
 
 # ==================================================
